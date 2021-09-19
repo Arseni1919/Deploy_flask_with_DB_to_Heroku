@@ -17,7 +17,7 @@ select * from <table name>;
 - [Specifying a Python version](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)
 - [Specifying a Python Runtime](https://devcenter.heroku.com/articles/python-runtimes)
 - set `SQLAlchemy==1.3.24` and not `SQLAlchemy==1.4.<`  with `pip install SQLAlchemy==1.3.24`
-- 
+- [Use SQL with `flask_sqlalchemy`](https://stackoverflow.com/a/22084672/13993545)
 
 ## Credits
 
