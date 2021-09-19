@@ -4,8 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# ENV = 'dev'
-ENV = 'prod'
+ENV = 'dev'
+# ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
@@ -28,6 +28,17 @@ class Feedback(db.Model):
     def __init__(self, customer, comments):
         self.customer = customer
         self.comments = comments
+
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200), unique=True)
+    password = db.Column(db.Text())
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
 
 
 @app.route('/success')
