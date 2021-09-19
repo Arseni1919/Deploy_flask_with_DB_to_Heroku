@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <a href="/success" class="btn btn-primary">Success</a>
+    <div class="container pd-10">
+        <h1>Hello inside Home</h1>
+    </div>
+
+    <div class="container pd-10 p-2">
+        {% if message %}
+            <div class="alert alert-danger" role="alert">
+                {{ message | safe }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container pd-10">
+        <form action="/submit" method="POST">
+            <div class="group-form">
+                <h3>Customer Name</h3>
+                <label>
+                    <input type="text" name="customer" placeholder="Name of person">
+                </label>
+            </div>
+            <div class="group-form">
+                <h3>Comments</h3>
+                <label>
+                    <textarea name="comments" placeholder="Comments..."></textarea>
+                </label>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
