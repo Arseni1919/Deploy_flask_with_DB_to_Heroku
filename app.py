@@ -10,7 +10,7 @@ ENV = 'prod'
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/heroku_flask_db'
-if ENV == 'prod':
+elif ENV == 'prod':
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://skwmlusblqxfdx:92ab2cde87bc3198fd856ce7a543503d7be0c7411ac57c9b3029a6ccff9a5b0f@ec2-3-214-3-162.compute-1.amazonaws.com:5432/d9q38bu4qri2s1'
 
