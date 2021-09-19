@@ -63,6 +63,14 @@ def submit_func():
     return render_template('index.html')
 
 
+@app.route('/feedbacks')
+def feedbacks_func():
+    feedbacks = {}
+    query = db.session.query(Feedback)
+    for item in query:
+        feedbacks[item.customer] = item.comments
+    return render_template('feedbacks.html', feedbacks=feedbacks)
+
 @app.route('/')
 def index_func():
     return render_template('index.html')

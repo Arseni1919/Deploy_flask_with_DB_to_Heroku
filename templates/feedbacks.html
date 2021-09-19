@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Feedbacks{% endblock %}
+
+{% block body %}
+
+    <div class="container pd-10">
+        <h1>Feedbacks:</h1>
+    </div>
+    <div class="container pd-10">
+        <ul class="list-group">
+            {% for user, feedback in feedbacks.items() %}
+                <li class="list-group-item p-2">{{ user }}: {{ feedback }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="container pd-10 p-2">
+        <a href="/" class="btn btn-primary">Home</a>
+    </div>
+
+{% endblock %}
