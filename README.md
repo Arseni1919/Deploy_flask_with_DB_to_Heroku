@@ -22,3 +22,4 @@ select * from <table name>;
 ## Credits
 
 - [YouTube | Build & Deploy A Python Web App | Flask, Postgres & Heroku](https://www.youtube.com/watch?v=w25ea_I89iM&t=302s)
+- [YouTube | REST API With Flask & SQL Alchemy](https://www.youtube.com/watch?v=PTZiDnuC86g)
