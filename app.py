@@ -9,8 +9,8 @@ import os
 app = Flask(__name__)
 # basedir = os.path.abspath(os.path.dirname(__file__))
 
-ENV = 'dev'
-# ENV = 'prod'
+# ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True

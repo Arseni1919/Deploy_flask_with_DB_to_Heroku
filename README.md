@@ -40,3 +40,4 @@ Then, this shows all tables in the current schema:
 - [YouTube | Build & Deploy A Python Web App | Flask, Postgres & Heroku](https://www.youtube.com/watch?v=w25ea_I89iM&t=302s)
 - [YouTube | REST API With Flask & SQL Alchemy](https://www.youtube.com/watch?v=PTZiDnuC86g)
 - [Migration with `flask-migrate`](https://flask-migrate.readthedocs.io/en/latest/)
+- [blog | Developing a Flask Web App with a PostreSQL Database - Making all the Possible Errors](https://blog.theodo.com/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/)
