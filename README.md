@@ -2,6 +2,12 @@
 
 Name of the app: flask-db-heroku-project
 
+## Inside python of Heroku project
+
+```bash
+
+```
+
 ## Inside DB
 
 ```bash
