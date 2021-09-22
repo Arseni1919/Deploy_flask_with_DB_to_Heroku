@@ -28,12 +28,12 @@ class Feedback(db.Model):
         self.comments = comments
 
 
-class User(db.Model):
-    __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(200), unique=True)
-    password = db.Column(db.Text())
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+# class User(db.Model):
+#     __tablename__ = 'user'
+#     id = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.String(200), unique=True)
+#     password = db.Column(db.Text())
+#
+#     def __init__(self, username, password):
+#         self.username = username
+#         self.password = password

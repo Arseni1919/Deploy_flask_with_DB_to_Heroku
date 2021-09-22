@@ -25,6 +25,15 @@ select * from <table name>;
 - set `SQLAlchemy==1.3.24` and not `SQLAlchemy==1.4.<`  with `pip install SQLAlchemy==1.3.24`
 - [Use SQL with `flask_sqlalchemy`](https://stackoverflow.com/a/22084672/13993545)
 - [What does Autogenerate Detect (and what does it not detect?) during `flask db migrate -m "...migration message"`](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect)
+- [Show tables in your db:](https://stackoverflow.com/a/769706/13993545)
+First, choose your database:
+```bash
+\c database_name
+```
+Then, this shows all tables in the current schema:
+```bash
+\dt
+```
 
 ## Credits
 
