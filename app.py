@@ -1,16 +1,21 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from models import db, ma
 from models import Feedback, Station, product_schema, products_schema, Product  # , User
 import os
+import pandas as pd
+import json
+import plotly
+import plotly.express as px
 
 app = Flask(__name__)
 # basedir = os.path.abspath(os.path.dirname(__file__))
 
-# ENV = 'dev'
-ENV = 'prod'
+ENV = 'dev'
+# ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
@@ -145,6 +150,21 @@ def delete_product(id):
     result = product_schema.dumps(product)
     return result
 # ------------------------------------------------------- #
+
+
+@app.route('/notdash')
+def notdash():
+   df = pd.DataFrame({
+      "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
+      "Amount": [4, 1, 2, 2, 4, 5],
+      "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
+   })
+   fig = px.bar(df, x="Fruit",
+                y="Amount",
+                color="City",
+                barmode="group")
+   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+   return render_template("notdash.html", graphJSON=graphJSON)
 
 
 if __name__ == '__main__':
