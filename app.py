@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
+from models import db, Feedback
 import os
 
 app = Flask(__name__)
+# basedir = os.path.abspath(os.path.dirname(__file__))
 
 ENV = 'dev'
 # ENV = 'prod'
@@ -15,31 +18,18 @@ elif ENV == 'prod':
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://skwmlusblqxfdx:92ab2cde87bc3198fd856ce7a543503d7be0c7411ac57c9b3029a6ccff9a5b0f@ec2-3-214-3-162.compute-1.amazonaws.com:5432/d9q38bu4qri2s1'
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True  # complaining in the console
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # stop from complaining in the console
 
-db = SQLAlchemy(app)
+# init db
+db.init_app(app)
+db.app = app
 
+# init ma
+ma = Marshmallow(app)
 
-class Feedback(db.Model):
-    __tablename__ = 'feedback'
-    id = db.Column(db.Integer, primary_key=True)
-    customer = db.Column(db.String(200), unique=True)
-    comments = db.Column(db.Text())
-
-    def __init__(self, customer, comments):
-        self.customer = customer
-        self.comments = comments
-
-
-class User(db.Model):
-    __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(200), unique=True)
-    password = db.Column(db.Text())
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+# init migration
+migrate = Migrate(app, db)
 
 
 @app.route('/success')
@@ -71,6 +61,7 @@ def feedbacks_func():
     for item in query:
         feedbacks[item.customer] = item.comments
     return render_template('feedbacks.html', feedbacks=feedbacks)
+
 
 @app.route('/')
 def index_func():
