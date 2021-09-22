@@ -35,6 +35,12 @@ Then, this shows all tables in the current schema:
 ```bash
 \dt
 ```
+- How I solved issue with:
+```bash
+INFO  [alembic.env] No changes in schema detected.
+```
+I created another project [connected](https://flask-migrate.readthedocs.io/en/latest/) to the same DB. Then, I copied some files of versions... and that's it. 
+It worked after that in the current project. I do not know exactly what was a problem.
 
 ## Credits
 
