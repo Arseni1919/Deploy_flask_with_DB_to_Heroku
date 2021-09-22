@@ -62,12 +62,12 @@ product_schema = ProductSchema()
 products_schema = ProductSchema(many=True)
 
 
-# class User(db.Model):
-#     __tablename__ = 'user'
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(200), unique=True)
-#     password = db.Column(db.Text())
-#
-#     def __init__(self, username, password):
-#         self.username = username
-#         self.password = password
+class UserOfProduct(db.Model):
+    __tablename__ = 'user_of_product'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200), unique=True)
+    password = db.Column(db.Text())
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
