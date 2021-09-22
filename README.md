@@ -6,13 +6,13 @@ Website: [https://flask-db-heroku-project.herokuapp.com/](https://flask-db-herok
 ## Inside python of Heroku project
 
 ```bash
-
+$ heroku run python
 ```
 
 ## Inside DB
 
 ```bash
-heroku pg:psql --app <name of the app>
+$ heroku pg:psql --app <name of the app>
 ```
 
 ```sql
@@ -29,15 +29,15 @@ select * from <table name>;
 - [Show tables in your db:](https://stackoverflow.com/a/769706/13993545)
 First, choose your database:
 ```bash
-\c database_name
+$ \c database_name
 ```
 Then, this shows all tables in the current schema:
 ```bash
-\dt
+$ \dt
 ```
 - How I solved issue with:
 ```bash
-INFO  [alembic.env] No changes in schema detected.
+$ INFO  [alembic.env] No changes in schema detected.
 ```
 I created another project [connected](https://flask-migrate.readthedocs.io/en/latest/) to the same DB. Then, I copied some files of versions... and that's it. 
 It worked after that in the current project. I do not know exactly what was a problem.
