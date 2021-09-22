@@ -1,7 +1,12 @@
+import marshmallow.schema
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
+from marshmallow import Schema, fields
+
 import datetime
 
 db = SQLAlchemy()
+ma = Marshmallow()
 
 
 class Station(db.Model):
@@ -26,6 +31,35 @@ class Feedback(db.Model):
     def __init__(self, customer, comments):
         self.customer = customer
         self.comments = comments
+
+# ------------------------------------------------------- #
+
+
+# Product class/model
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # autoinc by default
+    name = db.Column(db.String(100), unique=True)
+    description = db.Column(db.String(200))
+    price = db.Column(db.Float)
+    qty = db.Column(db.Integer)
+
+    def __init__(self, name, description, price, qty):
+        self.name = name
+        self.description = description
+        self.price = price
+        self.qty = qty
+
+
+class ProductSchema(Schema):
+    id = fields.Integer()
+    name = fields.String()
+    description = fields.String()
+    price = fields.Float()
+    qty = fields.Integer()
+
+
+product_schema = ProductSchema()
+products_schema = ProductSchema(many=True)
 
 
 # class User(db.Model):

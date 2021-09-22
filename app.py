@@ -1,16 +1,16 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
-from models import db
-from models import Feedback, Station #, User
+from models import db, ma
+from models import Feedback, Station, product_schema, products_schema, Product  # , User
 import os
 
 app = Flask(__name__)
 # basedir = os.path.abspath(os.path.dirname(__file__))
 
-# ENV = 'dev'
-ENV = 'prod'
+ENV = 'dev'
+# ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
@@ -29,7 +29,7 @@ db.create_all(app=app)
 # db = SQLAlchemy(app)
 
 # init ma
-ma = Marshmallow(app)
+ma.init_app(app)
 
 # init migration
 migrate = Migrate(app, db)
@@ -68,6 +68,83 @@ def feedbacks_func():
 @app.route('/')
 def index_func():
     return render_template('index.html')
+
+
+# ------------------------------------------------------- #
+# ----------------------CRUD API------------------------- #
+# ------------------------------------------------------- #
+
+@app.route('/product', methods=['POST', 'GET'])
+def add_product():
+    if request.method == 'POST':
+        name = request.form['name']
+        description = request.form['description']
+        price = request.form['price']
+        qty = request.form['qty']
+
+        new_product = Product(name=name, description=description, price=price, qty=qty)
+        try:
+            db.session.add(new_product)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            raise
+
+        return product_schema.dumps(new_product)
+    if request.method == 'GET':
+        all_products = Product.query.all()
+        result = products_schema.dumps(all_products)
+        return result
+
+@app.route('/product/<id>')
+def get_product(id):
+    product = Product.query.get(id)
+    result = product_schema.dumps(product)
+    return result
+
+
+@app.route('/product/<id>', methods=['PUT'])
+def update_product(id):
+    product = Product.query.get(id)
+
+    name = request.form['name']
+    description = request.form['description']
+    price = request.form['price']
+    qty = request.form['qty']
+
+    product.name = name
+    product.description = description
+    product.price = price
+    product.qty = qty
+
+    try:
+        db.session.commit()
+        return product_schema.dumps(product)
+    except:
+        db.session.rollback()
+        raise
+
+
+@app.route('/delete_product', methods=['POST'])
+def delete_product_redirection():
+    id = request.form['id']
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+
+    result = product_schema.dumps(product)
+    return result
+
+
+@app.route('/product/<id>', methods=['POST'])
+def delete_product(id):
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+
+    result = product_schema.dumps(product)
+    return result
+# ------------------------------------------------------- #
 
 
 if __name__ == '__main__':

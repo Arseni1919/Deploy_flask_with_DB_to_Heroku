@@ -16,7 +16,7 @@
         {% endif %}
     </div>
 
-    <div class="container pd-10">
+    <div class="container pd-10 p-2">
         <form action="/submit" method="POST">
             <div class="group-form">
                 <h3>Customer Name</h3>
@@ -30,6 +30,49 @@
                     <textarea name="comments" placeholder="Comments..."></textarea>
                 </label>
             </div>
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+    </div>
+
+    <div class="container pd-10 p-2">
+        <h2>Add Product Form:</h2>
+        <form action="/product" method="POST">
+            <div class="group-form">
+                <h3>Name</h3>
+                <label>
+                    <input type="text" name="name" placeholder="Name of product">
+                </label>
+            </div>
+            <div class="group-form">
+                <h3>Description</h3>
+                <label>
+                    <input type="text" name="description" placeholder="">
+                </label>
+            </div>
+            <div class="group-form">
+                <h3>Price</h3>
+                <label>
+                    <input type="number" name="price" placeholder="" step="0.01">
+                </label>
+            </div>
+            <div class="group-form">
+                <h3>Qty</h3>
+                <label>
+                    <input type="number" name="qty" placeholder="">
+                </label>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-secondary xy-2">
+        </form>
+    </div>
+
+    <div class="container pd-10 p-2">
+    <h2>Delete product</h2>
+        <form action="/delete_product" method="POST">
+            <div class="group-form">
+                <h3>Product ID</h3>
+                <label>
+                    <input type="number" name="id" placeholder="">
+                </label>
             <input type="submit" value="Submit" class="btn btn-secondary">
         </form>
     </div>
