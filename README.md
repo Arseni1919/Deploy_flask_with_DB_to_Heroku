@@ -49,3 +49,5 @@ It worked after that in the current project. I do not know exactly what was a pr
 - [YouTube | REST API With Flask & SQL Alchemy](https://www.youtube.com/watch?v=PTZiDnuC86g)
 - [Migration with `flask-migrate`](https://flask-migrate.readthedocs.io/en/latest/)
 - [blog | Developing a Flask Web App with a PostreSQL Database - Making all the Possible Errors](https://blog.theodo.com/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/)
+- [blog | Working with PostgreSQL in Python](https://stackabuse.com/working-with-postgresql-in-python/)
+- [github | psycopg2](https://github.com/psycopg/psycopg2)
